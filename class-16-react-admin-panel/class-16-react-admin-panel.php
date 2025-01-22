@@ -24,9 +24,11 @@ class ReactAdminPanel {
     private function load_classes() {
         require_once RAP_ROOT_PATH . 'includes/Admin_Menu.php';
         require_once RAP_ROOT_PATH . 'includes/Enqueue.php';
+        require_once RAP_ROOT_PATH . 'includes/Ajax.php';
 
         new RAP\Admin_Menu();
         new RAP\Enqueue();
+        new RAP\Ajax();
     }
 
     private function define_constants() {

@@ -13,6 +13,11 @@ class Enqueue {
             $main_asset = require RAP_ROOT_PATH . 'assets/build/main.asset.php';
 
             wp_enqueue_script( 'react-settings', RAP_ROOT_URL . 'assets/build/main.js', $main_asset['dependencies'], $main_asset['version'], array( 'in_footer' => true ) );
+
+            wp_localize_script( 'react-settings', 'ReactSettings', array(
+                'ajax_url' => admin_url( 'admin-ajax.php' ),
+                'nonce'    => wp_create_nonce( 'react-settings' ),
+            ) );
         }
     }
 
