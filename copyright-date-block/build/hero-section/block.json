@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "wda/hero-section",
+  "title": "Custom Hero Section",
+  "category": "text",
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "sub_heading": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./index.js"
+}
