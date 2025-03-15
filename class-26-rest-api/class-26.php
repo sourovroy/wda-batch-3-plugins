@@ -25,6 +25,7 @@ class Class_26_REST_API {
                     'default' => 2
                 ),
             ),
+            'permission_callback' => '__return_true'
         ) );
 
         register_rest_route( 'wda/v1', '/invoices/(?P<id>\d+)', array(
@@ -41,6 +42,7 @@ class Class_26_REST_API {
                     'required' => true,
                 ),
             ),
+            'permission_callback' => '__return_true',
         ) );
 
         register_rest_route( 'wda/v1', '/invoices', $this->register_create_invoice() );
