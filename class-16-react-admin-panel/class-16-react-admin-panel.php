@@ -25,10 +25,13 @@ class ReactAdminPanel {
         require_once RAP_ROOT_PATH . 'includes/Admin_Menu.php';
         require_once RAP_ROOT_PATH . 'includes/Enqueue.php';
         require_once RAP_ROOT_PATH . 'includes/Ajax.php';
+        require_once RAP_ROOT_PATH . 'includes/license/Settings.php';
 
         new RAP\Admin_Menu();
         new RAP\Enqueue();
         new RAP\Ajax();
+
+        new RAP\License\Settings();
     }
 
     private function define_constants() {
