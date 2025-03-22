@@ -11,14 +11,14 @@ class Ajax {
     public function react_form_submit() {
         check_ajax_referer( 'react-settings', 'nonce' );
 
-        $title = isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
-        $choose_option = isset( $_POST['choose_option'] ) ? sanitize_text_field( $_POST['choose_option'] ) : '';
-        $select_radio = isset( $_POST['select_radio'] ) ? sanitize_text_field( $_POST['select_radio'] ) : '';
+        $title = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
+        $choose_option = isset( $_POST['choose_option'] ) ? sanitize_text_field( wp_unslash( $_POST['choose_option'] ) ) : '';
+        $select_radio = isset( $_POST['select_radio'] ) ? sanitize_text_field( wp_unslash( $_POST['select_radio'] ) ) : '';
 
         $select_checkbox = array();
 
         if ( isset( $_POST['select_checkbox'] ) && is_array( $_POST['select_checkbox'] ) ) {
-            $select_checkbox = array_map( 'sanitize_text_field', $_POST['select_checkbox'] );
+            $select_checkbox = array_map( 'sanitize_text_field', wp_unslash( $_POST['select_checkbox'] ) );
         }
 
         $data = array(

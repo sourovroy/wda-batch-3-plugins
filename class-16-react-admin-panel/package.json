@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "wp-scripts start assets/settings/main.js --output-path=assets/build"
+    "dev": "wp-scripts start assets/settings/main.js --output-path=assets/build",
+    "build": "wp-scripts build assets/settings/main.js --output-path=assets/build"
   },
   "author": "",
   "license": "ISC",
