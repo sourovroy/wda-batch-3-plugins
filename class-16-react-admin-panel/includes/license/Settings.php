@@ -12,6 +12,8 @@ class Settings {
 
     public function __construct() {
         add_action( 'admin_menu', array( $this, 'license_menu' ) );
+
+        add_action( 'init', array( $this, 'plugin_updater' ) );
     }
 
     public function license_menu() {
@@ -23,6 +25,20 @@ class Settings {
             'react_admin_license',
             array( $this, 'license_page' )
         );
+
+        $license_key = get_option( 'rap_license_key' );
+
+        if ( $license_key ) {
+            // Premium Feature for licensed users.
+            add_submenu_page(
+                'react_admin_settings',
+                'Premium Feature',
+                'Premium Feature',
+                'manage_options',
+                'react_admin_premium',
+                array( $this, 'license_page' )
+            );
+        }
     }
 
     public function license_page() {
@@ -86,11 +102,29 @@ class Settings {
 
         $license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-
 		if ( false === $license_data->success ) {
             return false;
         }
 
         return true;
+    }
+
+    public function plugin_updater() {
+        require_once __DIR__ . '/EDD_SL_Plugin_Updater.php';
+
+        $license_key = get_option( 'rap_license_key' );
+
+        // setup the updater
+        $edd_updater = new \EDD_SL_Plugin_Updater(
+            $this->store_url,
+            RAP_ROOT_FILE,
+            array(
+                'version' => RAP_VERSION,                    // current version number
+                'license' => $license_key,             // license key (used get_option above to retrieve from DB)
+                'item_id' => $this->item_id,       // ID of the product
+                'author'  => 'Easy Digital Downloads', // author of this plugin
+                'beta'    => false,
+            )
+        );
     }
 }

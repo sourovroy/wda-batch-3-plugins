@@ -35,6 +35,8 @@ class ReactAdminPanel {
     }
 
     private function define_constants() {
+        define( 'RAP_ROOT_FILE', __FILE__ );
+        define( 'RAP_VERSION', '1.0.0' );
         define( 'RAP_ROOT_PATH', plugin_dir_path( __FILE__ ) );
         define( 'RAP_ROOT_URL', plugin_dir_url( __FILE__ ) );
     }
